@@ -1,0 +1,32 @@
+# Base environment config
+- name: python
+  requires: ["py*"]
+  config:
+    dependencies:
+      python: "{py_version}"
+
+- name: gcc
+  requires: ["gcc*"]
+  config:
+    dependencies:
+      gcc: "{gcc_version}"
+      gxx: "{gcc_version}"
+
+- name: cuda
+  requires: ["cu*"]
+  config:
+    dependencies:
+      cuda-toolkit: "{cu_version}"
+    activation.env:
+      CUDA_HOME: "$CONDA_PREFIX"
+
+- name: torch
+  requires: ["pt*", "cu*"]
+  config:
+    pypi-options:
+      extra-index-urls:
+        - "https://download.pytorch.org/whl/cu{cu_tag}"
+    pypi-dependencies:
+      torch: "=={pt_version}"
+      torchvision: "*"
+      torchaudio: "*"

@@ -1,0 +1,18 @@
+# fVDB
+- name: fvdb-pypi-options
+  config:
+    pypi-options:
+      extra-index-urls:
+        - "https://d36m13axqqhiit.cloudfront.net/simple"
+
+- name: fvdb-0.5
+  requires: ["pt2110", "cu128|cu130"]
+  config:
+    pypi-dependencies:
+      fvdb-core: "==0.5.1+pt{pt_tag_xy}.cu{cu_tag}"
+
+- name: fvdb-0.4
+  requires: ["pt2100", "cu128|cu130"]
+  config:
+    pypi-dependencies:
+      fvdb-core: "==0.4.2+pt{pt_tag_xy}.cu{cu_tag}"

@@ -1,0 +1,12 @@
+[workspace]
+authors = ["sihang <sihang.chen@vuw.ac.nz>"]
+channels = ["conda-forge"]
+name = "penv"
+platforms = ["linux-64", "linux-aarch64", "osx-64", "osx-arm64", "win-64"]
+version = "0.1.0"
+
+[dependencies]
+python = ">=3.10"
+pyyaml = "*"
+tomlkit = "*"
+

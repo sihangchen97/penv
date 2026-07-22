@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+PROJECT_DIR="$SCRIPT_DIR/.."
+PIXI_PYTHON="$PROJECT_DIR/.pixi/envs/default/bin/python"
+if [[ ! -f "$PIXI_PYTHON" ]]; then
+  echo "running 'pixi install' in $PROJECT_DIR" >&2
+  cd "$PROJECT_DIR" && pixi install || { echo "error: pixi install failed" >&2; exit 1; }
+fi
+exec "$PIXI_PYTHON" "$SCRIPT_DIR/../penv.py" "$@"

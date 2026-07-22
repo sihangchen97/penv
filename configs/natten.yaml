@@ -1,0 +1,43 @@
+# natten
+# Source: https://whl.natten.org
+- name: natten-pypi-options
+  config:
+    pypi-options:
+      find-links:
+        - "https://whl.natten.org"
+
+- name: natten-pt2120
+  requires: ["pt2120", "cu132|cu130|cu126"]
+  config:
+    pypi-dependencies:
+      natten: "==0.21.6+torch{pt_tag}cu{cu_tag}"
+
+- name: natten-pt2110
+  requires: ["pt2110", "cu130|cu128|cu126"]
+  config:
+    pypi-dependencies:
+      natten: "==0.21.6+torch{pt_tag}cu{cu_tag}"
+
+- name: natten-pt2100
+  requires: ["pt2100", "cu130|cu128|cu126"]
+  config:
+    pypi-dependencies:
+      natten: "==0.21.6+torch{pt_tag}cu{cu_tag}"
+
+- name: natten-pt290
+  requires: ["pt290", "cu130|cu128|cu126"]
+  config:
+    pypi-dependencies:
+      natten: "==0.21.5+torch{pt_tag}cu{cu_tag}"
+
+- name: natten-pt280
+  requires: ["pt280", "cu129|cu128|cu126"]
+  config:
+    pypi-dependencies:
+      natten: "==0.21.1+torch{pt_tag}cu{cu_tag}"
+
+- name: natten-pt270
+  requires: ["pt270", "cu128|cu126"]
+  config:
+    pypi-dependencies:
+      natten: "==0.21.0+torch{pt_tag}cu{cu_tag}"

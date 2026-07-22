@@ -1,0 +1,8 @@
+# Build tools
+- name: build-tools
+  config:
+    dependencies:
+      ninja: "*"
+      cmake: "*"
+      packaging: "*"
+      hatchling: "*"
