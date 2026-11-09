@@ -1,0 +1,17 @@
+[project]
+name = "penv"
+version = "0.1.0"
+description = "Generate [feature.penv] in pixi.toml based on environment tags"
+authors = [{ name = "sihang", email = "sihang.chen@vuw.ac.nz" }]
+requires-python = ">=3.10"
+dependencies = [
+    "pyyaml",
+    "tomlkit",
+]
+
+[project.scripts]
+penv = "penv.__main__:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"

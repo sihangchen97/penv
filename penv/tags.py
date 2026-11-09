@@ -40,7 +40,7 @@ def tag_resolve(patterns, tags):
     variables = {}
     for tag in tags:
         for prefix, formats in patterns.items():
-            m = re.match(rf"^{prefix}(\d+)$", tag)
+            m = re.match(rf"^{re.escape(prefix)}(\d+)$", tag)
             if not m:
                 continue
             digits = m.group(1)

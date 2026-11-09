@@ -7,10 +7,7 @@ import shutil
 import subprocess
 import sys
 
-# Ensure src is importable
-sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-
-from src import (
+from penv import (
     load_config,
     load_tag_patterns,
     tag_resolve,
@@ -64,9 +61,13 @@ def main():
         if not shutil.which("pixi"):
             print("Error: pixi not found in PATH", file=sys.stderr)
             sys.exit(1)
-        subprocess.run(["pixi", "init"], check=True)
+        try:
+            subprocess.run(["pixi", "init"], check=True)
+        except subprocess.CalledProcessError:
+            print("Error: 'pixi init' failed", file=sys.stderr)
+            sys.exit(1)
 
-    update_toml(toml_path, merged, variables)
+    update_toml(toml_path, merged)
     print(f"Updated {toml_path} with [feature.penv] and [environments].default for {args.env_name}")
 
 

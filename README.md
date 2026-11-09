@@ -4,10 +4,10 @@ Generate `[feature.penv]` in `pixi.toml` based on environment tags.
 
 ## Quick Start
 
-Add `bin/` to PATH:
+Install as a uv tool (creates an isolated env on `~/.local/bin`):
 
 ```bash
-export PATH="$PATH:/path/to/penv/bin"
+uv tool install -r git+https://.../penv.git   # or: uv tool install /path/to/penv
 ```
 
 Run from any project directory:

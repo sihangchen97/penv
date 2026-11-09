@@ -1,4 +1,5 @@
 import re
+import sys
 
 
 def _req_matches(req, tags):
@@ -7,7 +8,7 @@ def _req_matches(req, tags):
         return any(_req_matches(part, tags) for part in req.split("|"))
     if req.endswith("*"):
         prefix = req[:-1]
-        return any(re.match(rf"^{prefix}\d+$", t) for t in tags)
+        return any(re.match(rf"^{re.escape(prefix)}\d+$", t) for t in tags)
     return req in tags
 
 
@@ -17,6 +18,9 @@ def merge_configs(deps) -> dict:
     for dep in deps:
         cfg = dep["config"]
         for key, value in cfg.items():
+            if key not in ("pypi-options", "dependencies", "pypi-dependencies", "activation.env"):
+                print(f"Warning: unknown config key '{key}' in dependency '{dep.get('name', '?')}', ignored",
+                      file=sys.stderr)
             if key == "pypi-options":
                 if key not in result:
                     result[key] = {}

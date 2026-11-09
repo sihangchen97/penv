@@ -1,11 +1,12 @@
 import os
 
 
-def update_toml(toml_path, merged, variables=None):
+def update_toml(toml_path, merged):
     """Apply merged config to existing pixi.toml using tomlkit."""
     import tomlkit
 
-    assert os.path.exists(toml_path), f"pixi.toml not found: {toml_path}"
+    if not os.path.exists(toml_path):
+        raise FileNotFoundError(f"pixi.toml not found: {toml_path}")
     with open(toml_path, "r") as f:
         doc = tomlkit.load(f)
 
@@ -60,9 +61,7 @@ def update_toml(toml_path, merged, variables=None):
     doc["feature"].add(tomlkit.nl())
 
     # Ensure [feature.custom] exists with empty dependency tables
-    if "feature" not in doc:
-        doc["feature"] = tomlkit.table()
-    if "custom" not in doc.get("feature", {}):
+    if "custom" not in doc["feature"]:
         custom = tomlkit.table()
         custom["dependencies"] = tomlkit.table()
         custom["pypi-dependencies"] = tomlkit.table()
